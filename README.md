@@ -7,4 +7,14 @@ In this presentation, we will show how you can go through the entire ETL/BI proc
 
 [0 - Set Up](00_setup.md)
 
-[1 - Create S3 bucket](01_create_s3.md)
+[1 - Create S3 bucket](01_aws_s3.md)
+
+[2 - AWS Glue Crawler](02_aws_glue_crawler.md)
+
+[3 - AWS Athena](03_aws_athena.md)
+
+[4 - AWS Glue](04_aws_glue.md)
+
+[5 - Quicksight](04_aws_quicksight.md)
+
+
