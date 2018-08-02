@@ -15,3 +15,6 @@ select count(*) from glue_tutorial_sales
 2. Click "Run query"
 
 3. Verify output is as expected. 
+
+
+[Back](README.md)

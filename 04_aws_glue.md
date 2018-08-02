@@ -56,7 +56,7 @@ Parameters:
 --REDSHIFT_DB_NAME			sales
 --SCHEMA_NAME				sales-XXX
 --TABLE_NAME				products-XXX
---CATALOG_CONNECTION		glue-tutorial-XXX
+--CATALOG_CONNECTION			glue-tutorial-XXX
 ```
 
 27. Click "Next"
@@ -70,7 +70,9 @@ Parameters:
 31. Update the script
 ```
 See glue script in repository.
-
 ```
 
 32. Click "Save"
+
+
+[Back](README.md)

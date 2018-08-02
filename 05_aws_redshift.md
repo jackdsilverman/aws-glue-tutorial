@@ -34,49 +34,5 @@ SELECT * FROM sales_XXX.products_XXX LIMIT 100;
 SELECT * FROM sales_XXX.products_XXX LIMIT 100;
 ```
 
-15. 
 
-16. 
-
-17. 
-
-18. 
-
-19. 
-
-20. 
-
-21. 
-
-22. 
-
-23. 
-
-24. 
-
-25. 
-
-26. 
-```
-Parameters:
---REDSHIFT_DB_NAME			sales
---SCHEMA_NAME				sales-XXX
---TABLE_NAME				products-XXX
---CATALOG_CONNECTION		glue-tutorial-XXX
-```
-
-27. 
-
-28. 
-
-29. 
-
-30. 
-
-31. 
-```
-See glue script in repository.
-
-```
-
-32. 
+[Back](README.md)
