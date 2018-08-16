@@ -21,7 +21,7 @@ job.init(args['JOB_NAME'], args)
 datasource = glueContext.create_dynamic_frame.from_catalog(
     database = args['SCHEMA_NAME'],
     table_name = args['TABLE_NAME'],
-    transforation_ctx = 'datasource')
+    transformation_ctx = 'datasource')
 
 sourcedata = datasource.toDF()
 
