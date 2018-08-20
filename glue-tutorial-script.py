@@ -16,12 +16,10 @@ spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
 
-job.init(args['JOB_NAME'], args)
-
 datasource = glueContext.create_dynamic_frame.from_catalog(
     database = args['SCHEMA_NAME'],
-    table_name = args['TABLE_NAME'],
-    transformation_ctx = 'datasource')
+    table_name = args['TABLE_NAME']
+    )
 
 sourcedata = datasource.toDF()
 
@@ -49,8 +47,8 @@ applymapping = ApplyMapping.apply(
         ("gross margin", "double", "gross_margin", "decimal(15,10)"),
         ("profit", "double", "profit", "numeric"),
         ("timestamp", "date", "timestamp", "date")
-    ], 
-    transformation_ctx = "applymapping")
+    ]
+
 # datasink (loading) using spark
 datasink = glueContext.write_dynamic_frame.from_jdbc_conf(
     frame = applymapping,
@@ -59,6 +57,5 @@ datasink = glueContext.write_dynamic_frame.from_jdbc_conf(
         "dbtable": "{}.{}".format(args['SCHEMA_NAME'], args['TABLE_NAME']),
         "database": args['REDSHIFT_DB_NAME']
     },
-    redshift_tmp_dir = args["TempDir"],
-    transformation_ctx = "datasink")
-
+    redshift_tmp_dir = args["TempDir"]
+)
