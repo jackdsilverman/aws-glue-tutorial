@@ -1,7 +1,7 @@
-CREATE SCHEMA sales_XXX;
+CREATE SCHEMA sales_redshift_schema_xxx;
 
 
-CREATE TABLE sales_XXX.products_XXX(
+CREATE TABLE sales_redshift_schema_xxx.products_redshift_table_xxx(
 retailer_country  varchar(20),
 order_method_type varchar(15),
 retailer_type  varchar(30),
@@ -16,4 +16,4 @@ profit    numeric(15,2),
 timestamp    date
 );
 
-SELECT * FROM sales_XXX.products_XXX LIMIT 50;
+SELECT * FROM sales_redshift_schema_xxx.products_redshift_table_xxx LIMIT 100;
