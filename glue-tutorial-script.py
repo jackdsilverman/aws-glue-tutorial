@@ -9,7 +9,7 @@ from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from datetime import datetime
 
-args = getResolvedOptions(sys.argv, ['TempDir', 'JOB_NAME', 'TABLE_NAME', 'SCHEMA_NAME', 'REDSHIFT_DB_NAME', 'CONNECTION_NAME'])
+args = getResolvedOptions(sys.argv, ['TempDir', 'JOB_NAME', 'REDSHIFT_TABLE_NAME', 'GLUE_TABLE_NAME', 'SCHEMA_NAME', 'REDSHIFT_DB_NAME', 'CONNECTION_NAME', 'GLUE_DB_NAME'])
 sc = SparkContext()
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
@@ -17,9 +17,9 @@ job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
 
 datasource = glueContext.create_dynamic_frame.from_catalog(
-    database = args['SCHEMA_NAME'],
-    table_name = args['TABLE_NAME']
-    )
+    database = args['GLUE_DB_NAME'],
+    table_name = args['GLUE_TABLE_NAME']
+)
 
 sourcedata = datasource.toDF()
 
@@ -48,13 +48,14 @@ applymapping = ApplyMapping.apply(
         ("profit", "double", "profit", "numeric"),
         ("timestamp", "date", "timestamp", "date")
     ]
+)
 
 # datasink (loading) using spark
 datasink = glueContext.write_dynamic_frame.from_jdbc_conf(
     frame = applymapping,
     catalog_connection = args['CONNECTION_NAME'],
     connection_options = {
-        "dbtable": "{}.{}".format(args['SCHEMA_NAME'], args['TABLE_NAME']),
+        "dbtable": "{}.{}".format(args['SCHEMA_NAME'], args['REDSHIFT_TABLE_NAME']),
         "database": args['REDSHIFT_DB_NAME']
     },
     redshift_tmp_dir = args["TempDir"]
