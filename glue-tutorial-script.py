@@ -9,7 +9,7 @@ from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from datetime import datetime
 
-args = getResolvedOptions(sys.argv, ['TempDir', 'JOB_NAME', 'REDSHIFT_TABLE_NAME', 'GLUE_TABLE_NAME', 'SCHEMA_NAME', 'REDSHIFT_DB_NAME', 'CONNECTION_NAME', 'GLUE_DB_NAME'])
+args = getResolvedOptions(sys.argv, ['TempDir', 'JOB_NAME', 'REDSHIFT_TABLE_NAME', 'GLUE_TABLE_NAME', 'SCHEMA_NAME', 'REDSHIFT_DB_NAME', 'CONNECTION_NAME'])
 sc = SparkContext()
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
