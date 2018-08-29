@@ -9,7 +9,7 @@ from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from datetime import datetime
 
-args = getResolvedOptions(sys.argv, ['TempDir', 'JOB_NAME', 'REDSHIFT_TABLE_NAME', 'GLUE_TABLE_NAME', 'SCHEMA_NAME', 'REDSHIFT_DB_NAME', 'CONNECTION_NAME'])
+args = getResolvedOptions(sys.argv, ['TempDir', 'JOB_NAME', 'REDSHIFT_DB_NAME', 'REDSHIFT_TABLE_NAME', 'GLUE_DB_NAME', 'GLUE_TABLE_NAME', 'SCHEMA_NAME', 'CONNECTION_NAME'])
 sc = SparkContext()
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
@@ -26,7 +26,7 @@ sourcedata = datasource.toDF()
 split_col = split(sourcedata["quarter"], " ")
 sourcedata = sourcedata.withColumn("quarter new", split_col.getItem(0))
 sourcedata = sourcedata.withColumn("profit", col("revenue")*col("gross margin"))
-sourcedata = sourcedata.withColumn("timestamp", current_date())
+sourcedata = sourcedata.withColumn("current date", current_date())
 
 # Convert back to Glue Dynamic Frame
 datasource = DynamicFrame.fromDF(sourcedata, glueContext, "datasource")
@@ -46,7 +46,7 @@ applymapping = ApplyMapping.apply(
         ("quantity", "bigint", "quantity", "integer"), 
         ("gross margin", "double", "gross_margin", "decimal(15,10)"),
         ("profit", "double", "profit", "numeric"),
-        ("timestamp", "date", "timestamp", "date")
+        ("timescurrent date", "date", "current_date", "date")
     ]
 )
 
